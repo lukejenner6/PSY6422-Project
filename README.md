@@ -13,7 +13,7 @@ This project was for a university assignment on data visualisation in R.
 
 Link to the published dashboard can be found [here](https://c6gp2m-luke-jenner.shinyapps.io/PSY6422_Project/).
 
-Link to the projects published R markdown can be found [here](https://rpubs.com/lukejenner6/892991).
+Link to the projects published R markdown can be found [here](https://rpubs.com/lukejenner6/893427).
 
 The dashboard's interface can be seen in this screenshot:
 ![](www/happiness_dashboard_screennshot.png)

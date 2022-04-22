@@ -1,4 +1,5 @@
 - [Project Overview](#project-overview-is-world-happiness-affected-by-gdp-per-capita-population-density-or-covid-lockdown-severity)
+  - [Version Control](#version-control)
   - [Important steps before running the code](#important-steps-before-running-the-code)
   - [Repository Overview](#repository-overview)
   - [Project Conclusions](#project-conclusions)
@@ -12,11 +13,33 @@ This project was for a university assignment on data visualisation in R.
 
 Link to the published dashboard can be found [here](https://c6gp2m-luke-jenner.shinyapps.io/PSY6422_Project/).
 
-Link to the projects published R markdown can be found [here](https://rpubs.com/lukejenner6/892991).
+Link to the projects published R markdown can be found [here](https://rpubs.com/lukejenner6/893427).
 
 The dashboard's interface can be seen in this screenshot:
 ![](www/happiness_dashboard_screennshot.png)
 
+## Version Control
+This project was written using **R script**, **version 4.1.2 (2021-11-01)**.
+
+The following packages were used:
+* **tidyverse** version 1.3.1
+* **here** version 1.0.1
+* **rvest** version 1.0.2
+* **rgdal** version 1.5.29
+* **leaflet** version 2.1.1
+* **RColorBrewer** version 1.1.3
+* **dplyr** version 1.0.8
+* **ggplot2** version 3.3.5
+* **plotly** version 4.10.0
+* **readr** version 2.1.2
+* **ggthemes** version 4.2.4
+* **htmlwidgets** version 1.5.4
+* **sysfonts** version 0.8.8
+* **shiny** version 1.7.1
+* **shinydashboard** version 0.7.2
+* **htmltools** version 0.5.2
+* **DT** version 0.22
+* **shinythemes** version 1.2.0
 
 ## Important steps before running the code
 

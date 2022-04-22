@@ -1,4 +1,5 @@
-################IMPORT AND CLEAN DATA#########################################################
+
+################ IMPORT AND CLEAN DATA #########################################################
 
 library(tidyverse) #used for general data manipulation
 library(here) #used to set a relative working directory
@@ -136,8 +137,8 @@ index <- which_country(gdp, 'Iran, Islamic Rep.')
 gdp <- country_change(gdp, index, 'Iran')
 
 #Kyrgyzstan
-which_country(gdp, 'Kyrgyz Republic')
-gdp <- country_change(gdp, 123, 'Kyrgyzstan')
+index <- which_country(gdp, 'Kyrgyz Republic')
+gdp <- country_change(gdp, index, 'Kyrgyzstan')
 
 #South Korea
 index <- which_country(gdp, 'Korea, Rep.')
@@ -246,7 +247,6 @@ library(plotly) #ggplotly function
 library(readr) #saves the ggplotly widget
 library(ggthemes) #allows for custom ggplot themes
 library(htmlwidgets) #saves ggplotly to html
-library(here) #sets relative wkd
 library(sysfonts) #downloads google font to R from computer
 
 # import google font from computer. Ensure all ttf fonts are downloaded from the font_download folder first.
@@ -957,4 +957,3 @@ server <- function(input, output, session) {
 
 #### Run App ####
 shinyApp(ui = ui, server = server)
-

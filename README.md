@@ -46,7 +46,7 @@ The following packages were used:
 **Ensure you manually install the fonts from the 'font_download' folder before running the scripts.**
 
 ### Working Directory
-The working directory should be formatted to include the R scripts in the main folder, with the **graphs**, **data** and **www** subfolders saved here.
+The working directory should be formatted to include the R scripts and styles.css file in the main folder, with the **graphs**, **data** and **www** subfolders saved here.
 Ensure the **here()** function is set correctly to your working directory, by first restarting R and then setting the working directory to the source file location. 
 
 ## Repository Overview 
@@ -57,6 +57,8 @@ Ensure the **here()** function is set correctly to your working directory, by fi
 **font_download:** This contains *'Source Sans Pro'* .ttf files to be installed onto the computer. These need to be **installed manually** before executing the code.
 
 **www:** This contains the screenshots that are used in this README file and the project_overview file. It is named www inline with shiny app documentation.
+
+**styles.css:** This contains the css elements for styling the hover over settings and panel sizing.
 
 **project_overview:** This is an R markdown file which contains the codebook and outlines the project's meta-data, goals, and coding process. 
 

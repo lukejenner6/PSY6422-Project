@@ -24,10 +24,6 @@ happiness_score <-  page %>% html_nodes(".numero+ .numero") %>% html_text() #scr
 whi <-  data.frame(country, happiness_score, stringAsFactors = FALSE) #combines the scraped columns into a new dataframe
 
 
-## remove uneeded variables
-rm(country, link, page, happiness_score)
-
-
 ## clean dataframe
 whi$country_sub <- str_sub(
   whi$country, 
@@ -98,7 +94,6 @@ country_change <- function(df, index, name) { #this inputs the df name, row inde
 #Join data to check NA values
 check <- left_join(whi, gdp, by= 'country') #left joins first dataframe to left
 
-rm(check)
 
 #some country names are incongruent so these will need to be changed in either df in order to match
 
@@ -195,10 +190,6 @@ avg_covid_score_missing <- sum(is.na(df$avg_covid_score))
 missing <-  data.frame(country_code_missing, country_missing,  happiness_score_missing, pop_density_missing, gdp_missing, avg_covid_score_missing, total_missing) # this data frame shows number of NAs per variable
 
 
-#remove uneeded variables
-rm(covid, gdp, pop, whi, avg_covid_score_missing, country_missing, country_change, pop_density_missing, total_missing, which_country, gdp_missing, happiness_score_missing, full_join.fun, country_code_missing, join1, index)
-
-
 ## add logged pop_density column ##
 
 df$pop_density_log = df$pop_density #create duplicate column
@@ -289,12 +280,12 @@ highlight <- highlightOptions(
 #### Create Variables for WHI ###########
 
 #custom colour palette
-mypalettewhi <- colorBin( palette="YlOrRd", domain = worldCountries@data$happiness_score, bins = 20) #colorBin indicates that the palette will be placed into bins
+mypalettewhi <- colorBin( palette="YlOrRd", domain = worldCountries@data$happiness_score, bins = 9) #colorBin indicates that the palette will be placed into bins
 
 #### Create Variables for gdp #########
 
 #custom colour palette
-mypalettegdp <- colorBin( palette="YlGn", domain=worldCountries@data$gdp, bins = 20)
+mypalettegdp <- colorBin( palette="YlGn", domain=worldCountries@data$gdp, bins = 9)
 
 #custom highlight options as gdp has white lines instead of black
 highlightgdp <- highlightOptions(
@@ -308,12 +299,12 @@ highlightgdp <- highlightOptions(
 ### Create Variables for Population Density #######
 
 #custom colour palette
-mypalettepop <- colorBin( palette="Purples", domain=worldCountries@data$pop_density_log, bins = 20)
+mypalettepop <- colorBin( palette="Purples", domain=worldCountries@data$pop_density_log, bins = 9)
 
 ### Create Variables for covid ################
 
 #Custom colour palette
-mypalettecovid <- colorBin(palette="Blues", domain = worldCountries@data$avg_covid_score, bins = 20)
+mypalettecovid <- colorBin(palette="Blues", domain = worldCountries@data$avg_covid_score, bins = 9)
 
 #### dataframe for data explorer #################################
 
@@ -572,9 +563,6 @@ covid_map <- ggplot(scatterdf, aes(x = avg_covid_score, y = happiness_score, lab
 #save graph
 ggsave(here('graphs', 'covid_severity_vs_happiness.png'), plot = covid_map, height = 15, width = 26, units = 'cm')
 
-#remove uneeded variables
-rm(scatter_covid, scatter_gdp, scatter_pop, scatter_poplog, font, labelplot)
-
 
 ############### DASHBOARD CODE ##############################################################
 
@@ -600,39 +588,31 @@ ui <- navbarPage(theme = shinytheme('flatly'), collapsible = TRUE,
                  
                  
                  ## First tab content. Inserts map within box ##################
-                 tabPanel("Map", icon = icon("globe"), 
+                 tabPanel("Map", icon = icon("globe"),
+                          div(class="outer",
+                              tags$head(includeCSS("styles.css")),
                           leafletOutput("map", #output is leaflet map
-                                        height=500),
+                                        height="100%", width = "100%"),
                           
                           ### adds tab panel to map ###
-                          
-                          ## sets aesthetcis of tab panel. controls opacity when hovered over
-                          tags$style("
-        #controls {
-          background-color: #ddd;
-          opacity: 0.9;
-        }
-        #controls:hover{
-          opacity: 1.0;
-        }
-               "),
                           
                           ## settings of tab panel for graphs
                           absolutePanel(
                             id = "controls", class = "panel panel-default",
                             bottom = 26, right = 26, fixed=FALSE, #sets default position
-                            width = 290, height = 210, #sets size
+                            width = 300, height = 270, #sets size
                             draggable = TRUE,  #allows to be draggable
                             ## fills tab panel with plot             
-                            plotOutput("scatterplot", height = 210)
+                            plotOutput("scatterplot", height = 270, width = 300)
                           ),
                  
                  # tab panel for title
-                 absolutePanel(id = "controls", class = "panel panel-default",
-                               top = 92, left = 65, width = 450, fixed=TRUE,
+                 absolutePanel(id = "title", class = "panel panel-default",
+                               top = 92, left = 65, width = 590, fixed=TRUE,
                                draggable = FALSE, height = "auto",
                                
-                               (h5(strong("Global Levels of GDP per Capita, Population Density and Covid-19 Lockdown Severity, and their Relation to World Happiness"))), style="color:#045a8d"),
+                               (h4(strong("Global Levels of GDP per Capita, Population Density and Covid-19 Lockdown Severity, and their Relation to World Happiness"))), style="color:#045a8d"),
+)
 ),
                  
                  
@@ -656,10 +636,17 @@ ui <- navbarPage(theme = shinytheme('flatly'), collapsible = TRUE,
                                        h3('An alternative scatter plot for population density is provided, to show the relationship if the effects of outliers (Hong Kong and Singapore) are minimised. This was achieved by performing a log transformation on population density.')),
                               
                               #subsequent panels display plotly graphs as created previously
-                              tabPanel("GDP per Capita", plotlyOutput("plot_gdp", height = 450)),
-                              tabPanel("Population Density", plotlyOutput("plot_pop", height = 450)),
-                              tabPanel("Population Density (Adjusted)", plotlyOutput("plot_pop_adj", height = 450)),
-                              tabPanel("Covid-19 Stringency", plotlyOutput("plot_covid", height = 450))
+                              tabPanel("GDP per Capita", 
+                                       plotlyOutput("plot_gdp", height = "100%", width = "100%")),
+                              
+                              tabPanel("Population Density", 
+                                       plotlyOutput("plot_pop", height = "100%", width = "100%")),
+                              
+                              tabPanel("Population Density (Adjusted)", 
+                                       plotlyOutput("plot_pop_adj", height = "100%", width = "100%")),
+                              
+                              tabPanel("Covid-19 Stringency", 
+                                       plotlyOutput("plot_covid", height = "100%", width = "100%"))
                             )
                           )
                  ),
@@ -684,13 +671,15 @@ ui <- navbarPage(theme = shinytheme('flatly'), collapsible = TRUE,
                           
                           fluidPage(width = 60, #tab is an open page document
                                     
+
+                                    
                                     #HTML functionality to display text and change colour and format the page    
                                     HTML('<center><h1 style = "background-color:orange; color:white">Dashboard Information</h1></center>'),
-                                    
                                     #adds smiling world image
                                     img(src="https://i.guim.co.uk/img/media/16ff6eca7df464c60bfa1d87f1388b80249c8ae2/0_775_3753_2252/master/3753.jpg?width=940&quality=45&auto=format&fit=max&dpr=2&s=d1d049bd2716c11ecb029329290c766b", 
                                         height="50%", width="50%", #reduces image size
                                         align = 'right'), #positions image to right
+                                
                                     
                                     #heading functions used to write content
                                     h4("This dashboard uses a map to visualise global levels of happiness, GDP per capita, population density and covid-19 response stringencies. The map features supporting graphs to visualise each variable\'s relationship with global happiness."),
@@ -700,6 +689,8 @@ ui <- navbarPage(theme = shinytheme('flatly'), collapsible = TRUE,
                                     h4("Finally, a data explorer is provided for investigation of particular countries or searching of countries with extreme scores on these factors."),
                                     
                                     h4("Each visualisation is interactive, so the reader is encouraged to freely explore them."),
+                                    
+                                    
                                     
                                     br(), br(), br(), br(), br(), #br() indicates breaks. E.g. two breaks creates larger space
                                     
@@ -776,7 +767,11 @@ server <- function(input, output, session) {
     map <- worldCountries %>% #geospatial data frame
       leaflet() %>%
       addTiles() %>%
+      
       setView( lat=10, lng=0 , zoom=2) %>% #sets default map pan
+      
+      setMaxBounds( lng1 = -180, lat1 = -87, #stops the map being dragged out of bounds
+                    lng2 = 200, lat2 = 97 ) %>% 
       
       ### happiness map #########
     addPolygons(

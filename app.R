@@ -492,6 +492,8 @@ whi_map <- ggplot(scatterdf, aes(x = happiness_score)) +
   geom_histogram(colour = 'white', fill = '#b10026', bins = 35) +
   theme_classic() +
   theme(
+    axis.text.x=element_blank(), #remove x axis labels
+    axis.ticks.x=element_blank(), #remove x axis ticks
     axis.text.y=element_blank(),  #remove y axis labels
     axis.ticks.y=element_blank(),  #remove y axis ticks
     text = element_text(family = "Source Sans Pro"),
@@ -656,7 +658,7 @@ ui <- navbarPage(theme = shinytheme('flatly'), collapsible = TRUE,
                  tabPanel('Data Explorer', icon = icon("list", lib = "glyphicon"),
                           fluidPage(
                             HTML('<h1 style = "color:orange">Data Explorer</h1>'), #main title in orange
-                            h4('Click on column headings or use the search tool to explore the dataset'), #subtitle created using heading
+                            h4('Click on column headings to toggle the lowest or highest values for each variable. Use the search tool to explore particular countries.'), #subtitle created using heading
                             box(
                               width = NULL, height = 510, #width = null to fill out the page
                               status='primary', #highlights in blue

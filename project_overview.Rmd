@@ -18,7 +18,7 @@ output:
 &nbsp;
 
 # Overview
-This document outlines the process and materials required to create the happiness dashboard. This report outlines code specific to the app.R file. 
+This document outlines the process and materials required to create the happiness dashboard, within the app.R file. 
 
 The project’s github repository link can be found [here](https://github.com/lukejenner6/PSY6422_Project).
 
@@ -185,7 +185,7 @@ This project also concluded that GDP per capita may have a strong relationship w
 ## Limitations 
 The main limitation is that the data analysed is from different years. However, this may be less of an issue for GDP per capita and population density as their publishing date (2020), preceded the outcome variable of world happiness (2021), meaning that some time may have elapsed to allow for effects of these to influence world happiness. However, the Covid-19 response scores’ time period (2020-2022) proceeded the World Happiness Index. From 2021-2022, there have been large fluctuations in global lockdowns and increasing disparity in country’s lockdown measures, as particular countries gain better access to vaccines. This could have had a large impact on world happiness, which this project fails to highlight. However, as this project was conducted, whilst the Covid-19 pandemic was still ongoing, it is hard to access these insights. Therefore, this project would benefit being updated in a few years time, once the Covid-19 pandemic has subsided.
 
-Another issue is that the data contains manyy NA values for small, or poorly developed countries. This means the projects conclusions, especially that of the scatter plots, may be biased away from less economically developed countries. The World Bank’s solution to this was to impute the NAs with entries from the most recent year of record. This project decided to avoid this as to not mislead the reader with outdated information. However, the project could be updated to impute past dates, and then record their entry date in the data explorer.
+Another issue is that the data contains manyy NA values for small, or less developed countries. This means the projects conclusions, especially that of the scatter plots, may be biased away from less economically developed countries. The World Bank’s solution to this was to impute the NAs with entries from the most recent year of record. This project decided to avoid this as to not mislead the reader with outdated information. However, the project could be updated to impute past dates, and then record their entry date in the data explorer.
 
 Finally, population density was massively skewed by highly dense city states (Hong Kong and Singapore), so a log transformation was decided to reduce their influence. This was also conducted to the colour palette of the leaflet map, as to allow for a greater range of polygon colour, and thus better interpretation of true differences in population density. However, log transformations make it harder to convey exact relative differences in population density.
 

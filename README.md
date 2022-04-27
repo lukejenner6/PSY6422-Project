@@ -13,7 +13,7 @@ This project was for a university assignment on data visualisation in R.
 
 Link to the published dashboard can be found [here](https://c6gp2m-luke-jenner.shinyapps.io/PSY6422_Project/).
 
-Link to the projects published R markdown can be found [here](https://rpubs.com/lukejenner6/893427).
+Link to the projects published rmarkdown can be found [here](https://rpubs.com/lukejenner6/893427).
 
 The dashboard's interface can be seen in this screenshot:
 ![](www/happiness_dashboard_screennshot.png)
@@ -60,7 +60,9 @@ Ensure the **here()** function is set correctly to your working directory, by fi
 
 **styles.css:** This contains the css elements for styling the hover over settings and panel sizing.
 
-**project_overview:** This is an R markdown file which contains the codebook and outlines the project's meta-data, goals, and coding process. 
+**project_overview.rmd:** This is an rmarkdown file which contains the codebook and outlines the project's meta-data, goals, and coding process. 
+
+**project_overview.html:** This is the knitted rmarkdown document.
 
 **app.R:** R script for running the dashboard. This is split into three sections: importing and cleaning the data, creating graphs and variables for the dashboard, and executing the dashboard. It is best to view the dashboard in a browser window, as the aesthetics are tailored towards this.
 

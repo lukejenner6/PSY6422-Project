@@ -60,9 +60,9 @@ Ensure the **here()** function is set correctly to your working directory, by fi
 
 **styles.css:** This contains the css elements for styling the hover over settings and panel sizing.
 
-**project_overview.rmd:** This is an rmarkdown file which contains the codebook and outlines the project's meta-data, goals, and coding process. 
+**index.rmd:** This is an rmarkdown file which contains the codebook and outlines the project's meta-data, goals, and coding process. 
 
-**project_overview.html:** This is the knitted rmarkdown document.
+**index.html:** This is the knitted rmarkdown document.
 
 **app.R:** R script for running the dashboard. This is split into three sections: importing and cleaning the data, creating graphs and variables for the dashboard, and executing the dashboard. It is best to view the dashboard in a browser window, as the aesthetics are tailored towards this.
 

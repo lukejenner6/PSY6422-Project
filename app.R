@@ -195,6 +195,9 @@ missing <-  data.frame(country_code_missing, country_missing,  happiness_score_m
 df$pop_density_log = df$pop_density #create duplicate column
 df$pop_density_log = log(df$pop_density_log) #log entire column
 
+##add logged gdp
+df$gdp_log = df$gdp #create duplicate column
+df$gdp_log = log(df$gdp_log) #log entire column
 
 ## add thousands seperator and round to 2dp##
 df$commagdp = df$gdp
@@ -251,13 +254,13 @@ font_add_google("Source Sans Pro")
 ### general aesthetics ####
 
 ### label information ###
-mytext <- paste(
-  "Country: ", worldCountries@data$NAME,"<br/>", #label key and data
-  "Happiness Score: ", round(worldCountries@data$happiness_score, 2), "<br/>", #data rounded to 2 dp
-  "GDP per Capita: $", worldCountries@data$commagdp, "<br/>",
-  "Population Density: ", round(worldCountries@data$pop_density, 2), "<br/>",
-  "Covid Stringency: ", round(worldCountries@data$avg_covid_score, 2), "<br/>",
-  sep=""
+mytext <- sprintf(
+  "<strong>%s</strong><br/>Happiness Score: %s<br/>GDP per Capita: $%s<br/>Population Density: %s <br/>Covid Stringency: %s",
+  worldCountries@data$NAME, 
+  round(worldCountries@data$happiness_score, 2), 
+  worldCountries@data$commagdp,
+  round(worldCountries@data$pop_density, 2),
+  round(worldCountries@data$avg_covid_score, 2)
 ) %>%
   lapply(htmltools::HTML)
 
@@ -285,7 +288,7 @@ mypalettewhi <- colorBin( palette="YlOrRd", domain = worldCountries@data$happine
 #### Create Variables for gdp #########
 
 #custom colour palette
-mypalettegdp <- colorBin( palette="YlGn", domain=worldCountries@data$gdp, bins = 9)
+mypalettegdp <- colorBin( palette="YlGn", domain=worldCountries@data$gdp_log, bins = 9)
 
 #custom highlight options as gdp has white lines instead of black
 highlightgdp <- highlightOptions(
@@ -792,7 +795,7 @@ server <- function(input, output, session) {
       ### GDP #################
     addPolygons(
       data = worldCountries,
-      fillColor = ~mypalettegdp(gdp), 
+      fillColor = ~mypalettegdp(gdp_log), 
       stroke=TRUE, 
       fillOpacity = 0.9, 
       color="black", #black is added as highlight as yellows will blend

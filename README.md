@@ -74,11 +74,12 @@ This project also concluded that GDP per capita may have a strong relationship w
 ## Project Limitations
 * The entry dates for the Covid-19 lockdown stingency scores (2020-2022) proceed World Happiness Index Scores (2021), so the true effects of Covid-19 lockdowns may be missed.
 * There are many NA values for small or developing countries, so the data may be biased away from these countries.
-* Population density was massively skewed by highly dense city states (Hong Kong and Singapore), so a log transformation was decided to reduce their influence. This was also conducted to the colour palette of the leaflet map, as to allow for a greater range of polygon colour, and thus better interpretation of true differences in population density. However, log transformations make it harder to convey exact relative differences in population density.
+* Population density was massively skewed by highly dense city states (Hong Kong and Singapore), so a log transformation was decided to reduce their influence. This was also conducted to the colour palette of the leaflet map for both population density and GDP per Capita, as to allow for a greater range of polygon colour, and thus better interpretation and information of differences in population density and GDP between countries. However, log transformations make it harder to convey linear relative differences in population density and GDP per capita.
 
 ## Future Directions
 The community is welcome to improve this code. Some suggestions are:
 * This code could be modified to substitute NA values with prior years of records. Data point record years could then be recorded within the interactive data explorer.
+* Pop-up labels could be added to the leaflet map to highlight the highest and lowest scoring country for each value. A short explanation on why that country is the richest ect could be given.
 * The green text highlights could be altered towards orange, as to be more consistent with the dashboard's style.
 * Subtitles and captions could be added to the ggplotly graphs.
 * An NA key could be added to the leaflet map legend.

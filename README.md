@@ -9,7 +9,7 @@
 # Project Overview: Is World Happiness Affected by GDP per Capita, Population Density or Covid-19 Lockdown Severity?
 This project creates a shiny dashboard, programmed in R. It aimed to visualise global levels of happiness ratings, GDP per capita, population density per km squared and Covid-19 lockdown severity, using an interactive map. It then sought to combine these, by visualising scatter-plots for the relationship each of these demographic factors had with global happiness levels, as an overlay to the interactive map. To allow the reader to further explore these scatter-plots, full-size interactive graphs were provided. Finally, an interactive table was included for further customised exploration of the dataset.
 
-This project was for a university assignment on data visualisation in R.
+This project was for a university assignment on data management and visualisation in R.
 
 Link to the published dashboard can be found [here](https://c6gp2m-luke-jenner.shinyapps.io/PSY6422_Project/).
 
